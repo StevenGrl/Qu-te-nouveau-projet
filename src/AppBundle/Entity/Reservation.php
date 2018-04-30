@@ -13,6 +13,18 @@ use Doctrine\ORM\Mapping as ORM;
 class Reservation
 {
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $passenger;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Flight")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $flight;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -123,5 +135,49 @@ class Reservation
     public function getWasDone()
     {
         return $this->wasDone;
+    }
+
+    /**
+     * @return mixed
+     */
+    public  function getPassenger()
+    {
+        return $this->passenger;
+    }
+
+    /**
+     * @param mixed $passenger
+     * @return Reservation
+     */
+    public function setPassenger($passenger)
+    {
+        $this->passenger = $passenger;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public  function getFlight()
+    {
+        return $this->flight;
+    }
+
+    /**
+     * @param mixed $flight
+     * @return Reservation
+     */
+    public function setFlight($flight)
+    {
+        $this->flight = $flight;
+        return $this;
+    }
+
+    /**
+    * @return string
+     */
+    public function __toString()
+    {
+        return $this->id;
     }
 }

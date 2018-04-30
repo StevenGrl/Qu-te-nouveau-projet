@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Site;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -221,5 +222,29 @@ class Flight
     public function getWasDone()
     {
         return $this->wasDone;
+    }
+
+    /**
+     * Set departure
+     *
+     * @param Site $departure
+     *
+     * @return Flight
+     */
+    public function setDeparture(Site $departure)
+    {
+        $this->departure = $departure;
+
+        return $this;
+    }
+
+    /**
+     * Get departure
+     *
+     * @return Site
+     */
+    public function getDeparture()
+    {
+        return $this->departure;
     }
 }

@@ -56,6 +56,11 @@ class Site
      */
     private $city;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flight", mappedBy="departure")
+     */
+    private $departures;
+
 
     /**
      * Get id
@@ -186,5 +191,16 @@ class Site
     {
         return $this->city;
     }
-}
 
+    /*
+     * Adding personal method
+     */
+
+    /**
+    * @return string
+     */
+    public function __toString()
+    {
+        return $this->icao . ' - ' . $this->name . ' ' . $this->city;
+    }
+}

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Site;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,6 +18,24 @@ class Flight
      * @ORM\JoinColumn(nullable=false)
      */
     private $departure;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Site")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $arrival;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PlaneModel")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $plane;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $pilot;
 
     /**
      * @var int
@@ -226,11 +245,11 @@ class Flight
     /**
      * Set departure
      *
-     * @param \AppBundle\Entity\Site $departure
+     * @param Site $departure
      *
      * @return Flight
      */
-    public function setDeparture(\AppBundle\Entity\Site $departure)
+    public function setDeparture(Site $departure)
     {
         $this->departure = $departure;
 
@@ -240,10 +259,72 @@ class Flight
     /**
      * Get departure
      *
-     * @return \AppBundle\Entity\Site
+     * @return Site
      */
     public function getDeparture()
     {
         return $this->departure;
+    }
+
+    /**
+     * @return mixed
+     */
+    public  function getArrival()
+    {
+        return $this->arrival;
+    }
+
+    /**
+     * @param mixed $arrival
+     * @return Flight
+     */
+    public function setArrival($arrival)
+    {
+        $this->arrival = $arrival;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public  function getPlane()
+    {
+        return $this->plane;
+    }
+
+    /**
+     * @param mixed $plane
+     * @return Flight
+     */
+    public function setPlane($plane)
+    {
+        $this->plane = $plane;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public  function getPilot()
+    {
+        return $this->pilot;
+    }
+
+    /**
+     * @param mixed $pilot
+     * @return Flight
+     */
+    public function setPilot($pilot)
+    {
+        $this->pilot = $pilot;
+        return $this;
+    }
+
+    /**
+    * @return string
+     */
+    public function __toString()
+    {
+        return $this->departure . ' ' . $this->arrival;
     }
 }
