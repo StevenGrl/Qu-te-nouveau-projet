@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Site</h1>
+
+<table>
+<tbody>
+<tr>
+<th>Id</th>
+<td>{{ review.id }}</td>
+</tr>
+<tr>
+<th>User rated</th>
+<td>{{ review.userRated }}</td>
+</tr>
+<tr>
+<th>Author</th>
+<td>{{ review.reviewAuthor }}</td>
+</tr>
+<tr>
+<th>Text</th>
+<td>{{ review.text }}</td>
+</tr>
+<tr>
+<th>Date publication</th>
+<td>{{ review.publicationDate }}</td>
+</tr>
+<tr>
+<th>Note</th>
+<td>{{ review.note }}</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>
+<a href="{{ path('review_index') }}">Back to the list</a>
+</li>
+</ul>
+{% endblock %}
