@@ -20,7 +20,7 @@ class ReservationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Reservation'
+            'data_class' => 'AppBundle\Entity\Reservation',
         ));
     }
 
@@ -31,6 +31,4 @@ class ReservationType extends AbstractType
     {
         return 'appbundle_reservation';
     }
-
-
 }

@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1>Reviews list</h1>
+    <h1>Reviews list</h1>
 
-<table>
-    <thead>
+    <table>
+        <thead>
         <tr>
             <th>Id</th>
             <th>User Rated</th>
@@ -12,27 +12,37 @@
             <th>Text</th>
             <th>Date</th>
             <th>Note</th>
+            <th>Actions</th>
         </tr>
-    </thead>
-<tbody>
-    {% for review in reviews %}
-    <tr>
-        <td><a href="{{ path('review_show', { 'id': review.id }) }}">{{ review.id }}</a></td>
-        <td>{{ review.userRated }}</td>
-        <td>{{ review.author }}</td>
-        <td>{{ review.text }}</td>
-        <td>{{ review.publicationDate }}</td>
-        <td>{{ review.note }}</td>
-        <td>
-            <ul>
-                <li>
-                    <a href="{{ path('review_show', { 'id': review.id }) }}">show</a>
-                </li>
-            </ul>
-        </td>
-    </tr>
-    {% endfor %}
-</tbody>
-</table>
+        </thead>
+        <tbody>
+        {% for review in reviews %}
+            <tr>
+                <td><a href="{{ path('review_show', { 'id': review.id }) }}">{{ review.id }}</a></td>
+                <td>{{ review.userRated }}</td>
+                <td>{{ review.reviewAuthor }}</td>
+                <td>{{ review.text }}</td>
+                <td>{{ review.publicationDate|date('Y-m-d H:i:s') }}</td>
+                <td>{{ review.note }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('review_show', { 'id': review.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('review_edit', { 'id': review.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('review_new') }}">Create a new review</a>
+        </li>
+    </ul>
 
 {% endblock %}

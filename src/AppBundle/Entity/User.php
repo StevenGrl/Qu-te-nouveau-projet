@@ -70,6 +70,16 @@ class User
      */
     private $isACertifiedPilot;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Review", mappedBy="userRated")
+     */
+    private $rate;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Review", mappedBy="reviewAuthor")
+     */
+    private $author;
+
 
     /**
      * Get id
