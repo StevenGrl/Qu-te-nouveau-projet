@@ -3,7 +3,7 @@
 {% block body %}
     <h1>Flight</h1>
 
-    <table>
+    <table class="table table-hover">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -32,6 +32,14 @@
             <tr>
                 <th>Wasdone</th>
                 <td>{% if flight.wasDone %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Distance</th>
+                <td>{% if distance %}{{ distance|number_format(2, ',', ' ') }}{% endif %}{{ unit }}</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <td>{% if time %}{{ time }}{% endif %}</td>
             </tr>
         </tbody>
     </table>

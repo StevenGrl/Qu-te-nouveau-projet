@@ -25,7 +25,7 @@ class ListingController extends Controller
      * @Method("GET")
      * @ParamConverter("reservation", options={"mapping": {"reservation_id": "id"}})
      * @ParamConverter("flight", options={"mapping": {"flight_id": "id"}})
-     * @ParamConverter("planemodel", options={"mapping": {"planemodel_id": "id"}})
+     * @ParamConverter("planeModel", options={"mapping": {"planemodel_id": "id"}})
     */
     public function indexAction(Reservation $reservation, Flight $flight, PlaneModel $planeModel)
     {

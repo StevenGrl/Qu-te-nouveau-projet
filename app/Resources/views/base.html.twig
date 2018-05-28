@@ -24,26 +24,28 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="{{ app.request.get('_route') == 'planemodel_index' ? 'active' }}">
+                        <li class="{{ app.request.get('_route') starts with 'planemodel' ? 'active' }}">
                             <a href="{{ path('planemodel_index') }}">Avions</a>
                         </li>
-                        <li class="{{ app.request.get('_route') == 'reservation_index' ? 'active' }}">
+                        <li class="{{ app.request.get('_route') starts with 'reservation' ? 'active' }}">
                             <a href="{{ path('reservation_index') }}">Réservations</a>
                         </li>
-                        <li class="{{ app.request.get('_route') == 'flight_index' ? 'active' }}">
+                        <li class="{{ app.request.get('_route') starts with 'flight' ? 'active' }}">
                             <a href="{{ path('flight_index') }}">Vols</a>
                         </li>
-                        <li class="{{ app.request.get('_route') == 'site_index' ? 'active' }}">
+                        <li class="{{ app.request.get('_route') starts with 'site' ? 'active' }}">
                             <a href="{{ path('site_index') }}">Terrains</a>
                         </li>
-                        <li class="{{ app.request.get('_route') == 'review_index' ? 'active' }}">
+                        <li class="{{ app.request.get('_route') starts with 'reviewx' ? 'active' }}">
                             <a href="{{ path('review_index') }}">Avis utilisateurs</a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-        {% block body %}{% endblock %}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
         <script src="{{ asset('build/main.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
