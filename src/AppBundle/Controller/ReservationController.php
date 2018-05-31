@@ -3,9 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Reservation;
+use AppBundle\Service\Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Twig_Environment;
 
 /**
  * Reservation controller.
@@ -37,7 +41,7 @@ class ReservationController extends Controller
      * @Route("/new", name="reservation_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Mailer $mailer)
     {
         $reservation = new Reservation();
         $form = $this->createForm('AppBundle\Form\ReservationType', $reservation);
@@ -47,6 +51,22 @@ class ReservationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($reservation);
             $em->flush();
+
+            $title = 'Notification by FlyAround';
+
+            // Pilot mail
+            $pilotMail = $reservation->getFlight()->getPilot()->getEmail();
+            $subject = 'Quelqu\'un vient de réserver une place sur votre vol. Merci de voyager avec Flyaround';
+            $body = 'Vous allez amener une personne de plus !';
+            $imgPilot = 'https://media.giphy.com/media/26UDZGgmtbY2hIJZFT/giphy.gif';
+            $mailer->sendMessage($pilotMail, $subject, $title, $body, $imgPilot);
+
+            // Passenger mail
+            $userMail = $this->getUser()->getEmail();
+            $subject = 'Votre réservation est enregistrée. Merci de voyager avec Flyaround';
+            $body = 'Nos hôtesses vous attendent avec impatience à bord de ce vol';
+            $imgUser = 'https://media.giphy.com/media/MSicafCyLrRaqZVLBc/giphy.gif';
+            $mailer->sendMessage($userMail, $subject, $title, $body, $imgUser);
 
             return $this->redirectToRoute('reservation_show', array('id' => $reservation->getId()));
         }
