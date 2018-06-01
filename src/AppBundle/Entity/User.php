@@ -60,7 +60,7 @@ class User extends BaseUser
     /**
      * @var int
      *
-     * @ORM\Column(name="note", type="smallint")
+     * @ORM\Column(name="note", type="smallint", nullable=true)
      */
     private $note;
 
